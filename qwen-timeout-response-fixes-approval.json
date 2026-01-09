@@ -1,0 +1,13 @@
+{
+  "approvalId": "approval_1767844814842_j9zu3icm5",
+  "action": "approve",
+  "title": "Qwen Timeout and Response Format Fixes Requirements",
+  "filePath": ".spec-workflow/specs/qwen-timeout-response-fixes/requirements.md",
+  "type": "document",
+  "category": "spec",
+  "categoryName": "qwen-timeout-response-fixes",
+  "comments": "Approved - Requirements clearly address the timeout and response format issues identified in the logs. Focus on source code fixes only, maintaining backward compatibility.",
+  "timestamp": "2026-01-08T04:05:00.000Z",
+  "approvedBy": "SpecFlow Workflow",
+  "status": "approved"
+}

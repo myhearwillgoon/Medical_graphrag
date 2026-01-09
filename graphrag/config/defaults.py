@@ -46,14 +46,14 @@ from graphrag.language_model.providers.litellm.services.retry.retry import Retry
 
 DEFAULT_OUTPUT_BASE_DIR = "output"
 DEFAULT_CHAT_MODEL_ID = "default_chat_model"
-DEFAULT_CHAT_MODEL_TYPE = ModelType.Chat
-DEFAULT_CHAT_MODEL = "gpt-4-turbo-preview"
+DEFAULT_CHAT_MODEL_TYPE = ModelType.QwenChat
+DEFAULT_CHAT_MODEL = "qwen3-30b"
 DEFAULT_CHAT_MODEL_AUTH_TYPE = AuthType.APIKey
 DEFAULT_EMBEDDING_MODEL_ID = "default_embedding_model"
-DEFAULT_EMBEDDING_MODEL_TYPE = ModelType.Embedding
-DEFAULT_EMBEDDING_MODEL = "text-embedding-3-small"
+DEFAULT_EMBEDDING_MODEL_TYPE = ModelType.QwenEmbedding
+DEFAULT_EMBEDDING_MODEL = "/home/huanghong/displace/Qwen/Qwen3-Embedding-0.6B"
 DEFAULT_EMBEDDING_MODEL_AUTH_TYPE = AuthType.APIKey
-DEFAULT_MODEL_PROVIDER = "openai"
+DEFAULT_MODEL_PROVIDER = "qwen"
 DEFAULT_VECTOR_STORE_ID = "default_vector_store"
 
 ENCODING_MODEL = "cl100k_base"

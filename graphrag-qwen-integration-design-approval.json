@@ -1,0 +1,13 @@
+{
+  "approvalId": "approval_1767840060370_sr4l3gdz6",
+  "action": "approve",
+  "title": "GraphRAG Qwen Integration Design",
+  "filePath": ".spec-workflow/specs/graphrag-qwen-integration/design.md",
+  "type": "document",
+  "category": "spec",
+  "categoryName": "graphrag-qwen-integration",
+  "comments": "Approved - Design document provides clear technical architecture following proven patterns from previous successful implementation. Component breakdown, data flow, error handling, and migration strategy are well-defined. Ready to proceed to task breakdown.",
+  "timestamp": "2026-01-08T02:40:00.000Z",
+  "approvedBy": "SpecFlow Workflow",
+  "status": "approved"
+}

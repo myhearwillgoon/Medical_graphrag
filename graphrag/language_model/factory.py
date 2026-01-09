@@ -18,6 +18,8 @@ from graphrag.language_model.providers.litellm.chat_model import LitellmChatMode
 from graphrag.language_model.providers.litellm.embedding_model import (
     LitellmEmbeddingModel,
 )
+from graphrag.language_model.providers.qwen_chat import QwenChatModel
+from graphrag.language_model.providers.qwen_embedding import QwenEmbeddingModel
 
 
 class ModelFactory:
@@ -110,6 +112,9 @@ ModelFactory.register_chat(
     ModelType.OpenAIChat.value, lambda **kwargs: OpenAIChatFNLLM(**kwargs)
 )
 ModelFactory.register_chat(ModelType.Chat, lambda **kwargs: LitellmChatModel(**kwargs))
+ModelFactory.register_chat(
+    ModelType.QwenChat.value, lambda **kwargs: QwenChatModel(**kwargs)
+)
 
 ModelFactory.register_embedding(
     ModelType.AzureOpenAIEmbedding.value,
@@ -120,4 +125,7 @@ ModelFactory.register_embedding(
 )
 ModelFactory.register_embedding(
     ModelType.Embedding, lambda **kwargs: LitellmEmbeddingModel(**kwargs)
+)
+ModelFactory.register_embedding(
+    ModelType.QwenEmbedding.value, lambda **kwargs: QwenEmbeddingModel(**kwargs)
 )

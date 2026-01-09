@@ -87,11 +87,13 @@ class ModelType(str, Enum):
     OpenAIEmbedding = "openai_embedding"
     AzureOpenAIEmbedding = "azure_openai_embedding"
     Embedding = "embedding"
+    QwenEmbedding = "qwen_embedding"
 
     # Chat Completion
     OpenAIChat = "openai_chat"
     AzureOpenAIChat = "azure_openai_chat"
     Chat = "chat"
+    QwenChat = "qwen_chat"
 
     # Debug
     MockChat = "mock_chat"
