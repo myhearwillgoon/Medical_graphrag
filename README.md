@@ -1,76 +1,139 @@
-# GraphRAG
+# Medical GraphRAG with Qwen Integration
 
+> **Medical domain adaptation of Microsoft GraphRAG with integrated Qwen 3-30B chat and Qwen 3 Embedding 0.6B models for healthcare knowledge graphs**
+
+👉 [Original Microsoft GraphRAG](https://github.com/microsoft/graphrag)<br/>
 👉 [Microsoft Research Blog Post](https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/)<br/>
-👉 [Read the docs](https://microsoft.github.io/graphrag)<br/>
-👉 [GraphRAG Arxiv](https://arxiv.org/pdf/2404.16130)
+👉 [GraphRAG Documentation](https://microsoft.github.io/graphrag)<br/>
+👉 [GraphRAG Arxiv Paper](https://arxiv.org/pdf/2404.16130)
 
 <div align="left">
-  <a href="https://pypi.org/project/graphrag/">
-    <img alt="PyPI - Version" src="https://img.shields.io/pypi/v/graphrag">
+  <a href="https://github.com/myhearwillgoon/Medical_graphrag">
+    <img alt="GitHub Repo" src="https://img.shields.io/badge/GitHub-Medical%20GraphRAG-blue">
   </a>
-  <a href="https://pypi.org/project/graphrag/">
-    <img alt="PyPI - Downloads" src="https://img.shields.io/pypi/dm/graphrag">
+  <a href="https://github.com/myhearwillgoon/Medical_graphrag/issues">
+    <img alt="GitHub Issues" src="https://img.shields.io/github/issues/myhearwillgoon/Medical_graphrag">
   </a>
-  <a href="https://github.com/microsoft/graphrag/issues">
-    <img alt="GitHub Issues" src="https://img.shields.io/github/issues/microsoft/graphrag">
-  </a>
-  <a href="https://github.com/microsoft/graphrag/discussions">
-    <img alt="GitHub Discussions" src="https://img.shields.io/github/discussions/microsoft/graphrag">
+  <a href="https://github.com/myhearwillgoon/Medical_graphrag/blob/main/LICENSE">
+    <img alt="License" src="https://img.shields.io/badge/License-MIT-green">
   </a>
 </div>
 
-## Overview
+## 🎯 Overview
 
-The GraphRAG project is a data pipeline and transformation suite that is designed to extract meaningful, structured data from unstructured text using the power of LLMs.
+This repository is a **medical domain adaptation** of [Microsoft GraphRAG](https://github.com/microsoft/graphrag) with integrated **Qwen model support** for healthcare knowledge graph applications. It extends the original GraphRAG framework with:
 
-To learn more about GraphRAG and how it can be used to enhance your LLM's ability to reason about your private data, please visit the <a href="https://www.microsoft.com/en-us/research/blog/graphrag-unlocking-llm-discovery-on-narrative-private-data/" target="_blank">Microsoft Research Blog Post.</a>
+- **Qwen 3-30B Chat Model** integration via OpenAI-compatible API
+- **Qwen 3 Embedding 0.6B Model** for efficient vector embeddings
+- Medical domain optimizations and configurations
+- Enhanced language model factory supporting custom endpoints
 
-## Quickstart
+## ✨ Key Features
 
-To get started with the GraphRAG system we recommend trying the [command line quickstart](https://microsoft.github.io/graphrag/get_started/).
+### Qwen Model Integration
+- **Qwen Chat Provider** (`qwen_chat.py`) - Full OpenAI-compatible API implementation
+- **Qwen Embedding Provider** (`qwen_embedding.py`) - Batch embedding support with efficient processing
+- Seamless integration with existing GraphRAG architecture
+- Configurable endpoint support for self-hosted Qwen models
 
-## Repository Guidance
+### Medical Domain Focus
+- Optimized for healthcare knowledge graph construction
+- Medical terminology and domain-specific prompt templates
+- Enhanced entity extraction for medical concepts
+- Community detection for medical knowledge clusters
 
-This repository presents a methodology for using knowledge graph memory structures to enhance LLM outputs. Please note that the provided code serves as a demonstration and is not an officially supported Microsoft offering.
+## 🚀 Quick Start
 
-⚠️ *Warning: GraphRAG indexing can be an expensive operation, please read all of the documentation to understand the process and costs involved, and start small.*
+### Prerequisites
+- Python 3.10+
+- Qwen model servers running:
+  - Chat API: `http://your-server:port/v1/chat/completions`
+  - Embedding API: `http://your-server:port/v1/embeddings`
 
-## Diving Deeper
+### Installation
 
-- To learn about our contribution guidelines, see [CONTRIBUTING.md](./CONTRIBUTING.md)
-- To start developing _GraphRAG_, see [DEVELOPING.md](./DEVELOPING.md)
-- Join the conversation and provide feedback in the [GitHub Discussions tab!](https://github.com/microsoft/graphrag/discussions)
+```bash
+# Clone the repository
+git clone https://github.com/myhearwillgoon/Medical_graphrag.git
+cd Medical_graphrag
 
-## Prompt Tuning
+# Install in development mode
+pip install -e .
+```
 
-Using _GraphRAG_ with your data out of the box may not yield the best possible results.
-We strongly recommend to fine-tune your prompts following the [Prompt Tuning Guide](https://microsoft.github.io/graphrag/prompt_tuning/overview/) in our documentation.
+### Configuration
 
-## Versioning
+Configure Qwen endpoints in your `settings.yaml`:
 
-Please see the [breaking changes](./breaking-changes.md) document for notes on our approach to versioning the project.
+```yaml
+language_model:
+  chat:
+    provider: qwen
+    model: "your-qwen-chat-model"
+    api_base: "http://your-server:port/v1/chat/completions"
+  
+  embedding:
+    provider: qwen
+    model: "your-qwen-embedding-model"
+    api_base: "http://your-server:port/v1/embeddings"
+```
 
-*Always run `graphrag init --root [path] --force` between minor version bumps to ensure you have the latest config format. Run the provided migration notebook between major version bumps if you want to avoid re-indexing prior datasets. Note that this will overwrite your configuration and prompts, so backup if necessary.*
+## 📋 What's Different from Original GraphRAG?
 
-## Responsible AI FAQ
+### Core Modifications
+1. **New Providers**: `qwen_chat.py` and `qwen_embedding.py` in `graphrag/language_model/providers/`
+2. **Factory Updates**: Enhanced language model factory to support Qwen endpoints
+3. **Configuration**: Extended defaults and enums for Qwen model support
+4. **FNL LM Enhancements**: Improved compatibility with Qwen-specific configurations
 
-See [RAI_TRANSPARENCY.md](./RAI_TRANSPARENCY.md)
+### Files Added
+- `graphrag/language_model/providers/qwen_chat.py` - Qwen chat implementation
+- `graphrag/language_model/providers/qwen_embedding.py` - Qwen embedding implementation
+- `.spec-workflow/` - Comprehensive specification documentation
 
-- [What is GraphRAG?](./RAI_TRANSPARENCY.md#what-is-graphrag)
-- [What can GraphRAG do?](./RAI_TRANSPARENCY.md#what-can-graphrag-do)
-- [What are GraphRAG’s intended use(s)?](./RAI_TRANSPARENCY.md#what-are-graphrags-intended-uses)
-- [How was GraphRAG evaluated? What metrics are used to measure performance?](./RAI_TRANSPARENCY.md#how-was-graphrag-evaluated-what-metrics-are-used-to-measure-performance)
-- [What are the limitations of GraphRAG? How can users minimize the impact of GraphRAG’s limitations when using the system?](./RAI_TRANSPARENCY.md#what-are-the-limitations-of-graphrag-how-can-users-minimize-the-impact-of-graphrags-limitations-when-using-the-system)
-- [What operational factors and settings allow for effective and responsible use of GraphRAG?](./RAI_TRANSPARENCY.md#what-operational-factors-and-settings-allow-for-effective-and-responsible-use-of-graphrag)
+### Files Modified
+- `graphrag/config/defaults.py` - Qwen configuration defaults
+- `graphrag/config/enums.py` - Qwen enum additions
+- `graphrag/language_model/factory.py` - Factory pattern updates
+- `graphrag/language_model/providers/fnllm/models.py` - Enhanced FNL LM support
 
-## Trademarks
+## 📚 Documentation
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft
-trademarks or logos is subject to and must follow
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+- **Spec Workflow**: See `.spec-workflow/specs/` for detailed requirements, design, and task documentation
+- **Original GraphRAG Docs**: [Microsoft GraphRAG Documentation](https://microsoft.github.io/graphrag)
+- **Qwen Integration**: Check provider implementations in `graphrag/language_model/providers/`
 
-## Privacy
+## ⚠️ Important Notes
 
-[Microsoft Privacy Statement](https://privacy.microsoft.com/en-us/privacystatement)
+- **Based on**: Microsoft GraphRAG v2.7.0
+- **License**: MIT (inherited from original GraphRAG project)
+- **Not Officially Supported**: This is a community adaptation, not an official Microsoft offering
+- **Medical Use**: Ensure compliance with healthcare data regulations (HIPAA, GDPR, etc.)
+
+## 🤝 Contributing
+
+This repository is based on Microsoft GraphRAG. For contributions:
+- Report issues specific to this Medical GraphRAG adaptation
+- For original GraphRAG issues, see [Microsoft GraphRAG Issues](https://github.com/microsoft/graphrag/issues)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+**Copyright Notice**: This is a derivative work based on Microsoft GraphRAG. Original copyright belongs to Microsoft Corporation.
+
+## 🙏 Acknowledgments
+
+- **Microsoft GraphRAG Team** - For the excellent original GraphRAG framework
+- **Qwen Team** - For the powerful Qwen language models
+- **Open Source Community** - For continuous improvements and feedback
+
+## 🔗 Related Links
+
+- [Original Microsoft GraphRAG Repository](https://github.com/microsoft/graphrag)
+- [Microsoft GraphRAG Documentation](https://microsoft.github.io/graphrag)
+- [GraphRAG Research Paper](https://arxiv.org/pdf/2404.16130)
+
+---
+
+**Disclaimer**: This repository is a medical domain adaptation and community project. It is not affiliated with, endorsed by, or officially supported by Microsoft Corporation.
